@@ -1,7 +1,6 @@
 class Solution:
 
     def find(self,s,low,high,temp,maxlen):
-
         while low>= 0and high<=len(s)-1:
             if s[high]==s[low]:
                 if (high-low+1)>maxlen:
@@ -11,6 +10,7 @@ class Solution:
                 high+=1
             else:
                 break
+        return temp,maxlen
 
     def longestPalindrome(self, s):
         """
@@ -23,9 +23,9 @@ class Solution:
         maxlen=0
         a=Solution()
         for i,j in enumerate(s):
-            a.find(s,i,i,temp,maxlen)
-            a.find(s,i,i+1,temp,maxlen)
-        return temp,maxlen
+            temp,maxlen=a.find(s,i,i,temp,maxlen)
+            temp,maxlen=a.find(s,i,i+1,temp,maxlen)
+        return "".join(temp)
 
 if __name__=="__main__":
     s=Solution()
